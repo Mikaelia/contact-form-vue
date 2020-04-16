@@ -12,15 +12,8 @@ const routes = [
     component: SignUpPage,
   },
   {
-    path: "/user",
-
-    children: [
-      {
-        path: "account",
-        name: "user",
-        component: UserAccountPage,
-      },
-    ],
+    path: "/user/:id",
+    component: UserAccountPage,
   },
 ];
 

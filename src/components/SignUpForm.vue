@@ -31,15 +31,9 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: 0,
-    },
+      age: 0
+    }
   }),
-
-  firestore() {
-    return {
-      users: db.collection("users"),
-    };
-  },
 
   methods: {
     signUp() {
@@ -56,12 +50,12 @@ export default {
         firstName: "",
         middleName: "",
         lastName: "",
-        age: 0,
+        age: 0
       };
 
-      this.$router.push(`/users/${userId}`);
-    },
-  },
+      this.$router.push(`/user/${userId}`);
+    }
+  }
 };
 </script>
 <style lang="css" scoped>
