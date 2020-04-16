@@ -21,7 +21,7 @@ export default {
     async submit() {
       this.error = null;
       this.formState = "loading";
-      await this.onSubmit();
+      this.onSubmit();
       console.log("submitted!");
       setTimeout(() => {
         this.formState = "success";

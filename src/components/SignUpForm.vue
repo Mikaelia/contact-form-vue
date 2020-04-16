@@ -19,6 +19,8 @@
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./base-components/LoadingButton";
+import { db } from "../firebase";
+import { v4 } from "uuid";
 
 export default {
   components: { BaseInput, BaseForm, LoadingButton },
@@ -29,26 +31,37 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: 0
-    }
+      age: 0,
+    },
   }),
+
+  firestore() {
+    return {
+      users: db.collection("users"),
+    };
+  },
 
   methods: {
     signUp() {
       // TODO hook up w/ vuex to store state
-      console.log(this.form);
-      // const data = this.form;
-      // this.$firestore.users.add(data);
+      const userId = v4();
+      console.log(userId);
+      const data = this.form;
+      db.collection("users")
+        .doc(userId)
+        .set(data);
+
       this.form = {
         email: "",
         firstName: "",
         middleName: "",
         lastName: "",
-        age: 0
+        age: 0,
       };
-      this.$router.push({ name: "user" });
-    }
-  }
+
+      this.$router.push(`/users/${userId}`);
+    },
+  },
 };
 </script>
 <style lang="css" scoped>
