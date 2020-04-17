@@ -47,8 +47,9 @@ export default {
         return "Invalid Entry";
       });
     },
+
     errors() {
-      if (!this.invalid) {
+      if (!this.vuelidate || !this.invalid) {
         return [];
       }
       return Object.keys(this.vuelidate.$params).filter(v => {

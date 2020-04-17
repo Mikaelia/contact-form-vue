@@ -1,14 +1,23 @@
 <template>
   <BaseForm :onSubmit="signUp" #default="{ error, formState }">
     <BaseInput v-model="form.email" :vuelidate="$v.form.email" label="Email" />
-    <BaseInput v-model="form.firstName" label="First Name" />
-    <BaseInput v-model="form.middleName" label="Middle Name" />
-    <BaseInput v-model="form.lastName" label="Last Name" />
     <BaseInput
-      v-model="form.age"
+      v-model="form.firstName"
+      :vuelidate="$v.form.firstName"
+      label="First Name"
+    />
+    <BaseInput v-model="form.middleName" label="Middle Name" />
+    <BaseInput
+      v-model="form.lastName"
+      :vuelidate="$v.form.lastName"
+      label="Last Name"
+    />
+    <BaseInput
+      v-model.number="form.age"
+      :vuelidate="$v.form.age"
       label="Age"
       type="number"
-      customErrorMessage="Must be over 18"
+      :customErrorMessages="{ minValue: 'Must be over 18' }"
     />
     <LoadingButton
       :state="formState"
@@ -26,7 +35,7 @@ import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./base-components/LoadingButton";
 import { db } from "../firebase";
 import { v4 } from "uuid";
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, minValue } from "vuelidate/lib/validators";
 
 export default {
   components: { BaseInput, BaseForm, LoadingButton },
@@ -37,7 +46,7 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: 0
+      age: null
     }
   }),
 
@@ -46,6 +55,16 @@ export default {
       email: {
         required,
         email
+      },
+      firstName: {
+        required
+      },
+      lastName: {
+        required
+      },
+      age: {
+        required,
+        minValue: minValue(18)
       }
     }
   },
