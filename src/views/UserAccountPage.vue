@@ -10,7 +10,7 @@ import { db } from "../firebase";
 
 export default {
   data: () => ({
-    user: {}
+    user: null
   }),
 
   firestore() {

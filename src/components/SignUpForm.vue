@@ -1,10 +1,15 @@
 <template>
   <BaseForm :onSubmit="signUp" #default="{ error, formState }">
-    <BaseInput v-model="form.email" label="Email" />
+    <BaseInput v-model="form.email" :vuelidate="$v.form.email" label="Email" />
     <BaseInput v-model="form.firstName" label="First Name" />
     <BaseInput v-model="form.middleName" label="Middle Name" />
     <BaseInput v-model="form.lastName" label="Last Name" />
-    <BaseInput v-model="form.age" label="Age" type="number" />
+    <BaseInput
+      v-model="form.age"
+      label="Age"
+      type="number"
+      customErrorMessage="Must be over 18"
+    />
     <LoadingButton
       :state="formState"
       class="signup-register-btn"
@@ -21,6 +26,7 @@ import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./base-components/LoadingButton";
 import { db } from "../firebase";
 import { v4 } from "uuid";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   components: { BaseInput, BaseForm, LoadingButton },
@@ -34,6 +40,15 @@ export default {
       age: 0
     }
   }),
+
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      }
+    }
+  },
 
   methods: {
     signUp() {
