@@ -1,8 +1,17 @@
 <template>
   <label v-if="label" class="field-label">
-    <span class="field-label-text" data-test="form-label-text">
-      {{ label }}
-    </span>
+    <div>
+      <span class="field-label-text" data-test="form-label-text">
+        {{ label }}
+      </span>
+      <span
+        v-for="message in secondaryMessages"
+        :key="message"
+        class="secondary-message"
+      >
+        {{ message }}
+      </span>
+    </div>
     <slot />
   </label>
 </template>
@@ -12,19 +21,35 @@ export default {
   props: {
     label: {
       type: String
+    },
+    secondaryMessages: {
+      type: []
+    }
+  },
+
+  watch: {
+    secondaryMessages(newVal) {
+      return newVal;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-span {
+div {
   display: flex;
-  justify-content: flex-start;
+}
+
+div * + * {
+  padding-left: 1rem;
 }
 
 label .field-label-text {
   text-transform: uppercase;
   font-weight: 400;
+}
+
+.secondary-message {
+  color: red;
 }
 </style>

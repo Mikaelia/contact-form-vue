@@ -1,5 +1,6 @@
 <template>
-  <BaseForm :onSubmit="signUp" #default="{ error, formState }">
+  <BaseForm :vuelidate="$v" :onSubmit="signUp" #default="{ error, formState }">
+    <p v-if="error">A server error has occured</p>
     <BaseInput v-model="form.email" :vuelidate="$v.form.email" label="Email" />
     <BaseInput
       v-model="form.firstName"
@@ -70,15 +71,7 @@ export default {
   },
 
   methods: {
-    signUp() {
-      // TODO hook up w/ vuex to store state
-      const userId = v4();
-      console.log(userId);
-      const data = this.form;
-      db.collection("users")
-        .doc(userId)
-        .set(data);
-
+    resetForm() {
       this.form = {
         email: "",
         firstName: "",
@@ -86,8 +79,18 @@ export default {
         lastName: "",
         age: 0
       };
-
-      this.$router.push(`/user/${userId}`);
+    },
+    signUp() {
+      const userId = v4();
+      const data = this.form;
+      return db
+        .collection("users")
+        .doc(userId)
+        .set(data)
+        .then(() => {
+          this.resetForm();
+          this.$router.push(`/user/${userId}`);
+        });
     }
   }
 };

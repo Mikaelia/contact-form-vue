@@ -4,10 +4,16 @@
   </form>
 </template>
 <script>
+import { FormStates } from "../../config.js";
+
 export default {
   props: {
     onSubmit: {
       type: Function,
+      required: true,
+    },
+    vuelidate: {
+      type: Object,
       required: true,
     },
   },
@@ -19,22 +25,19 @@ export default {
 
   methods: {
     async submit() {
+      this.vuelidate.$touch();
       this.error = null;
-      this.formState = "loading";
-      this.onSubmit();
-      console.log("submitted!");
-      setTimeout(() => {
-        this.formState = "success";
-      }, 1000);
-      // accepts custom submit function
-      //   await this.onSubmit()
-      //     .then(() => {
-      //       this.formState = "success";
-      //     })
-      //     .catch(error => {
-      //       this.error = error;
-      //       this.formState = null;
-      //     });
+      if (!this.vuelidate.$invalid) {
+        this.formState = FormStates.LOADING;
+        await this.onSubmit()
+          .then(() => {
+            this.formState = FormStates.SUCCESS;
+          })
+          .catch((error) => {
+            this.error = error;
+            this.formState = null;
+          });
+      }
     },
   },
 };

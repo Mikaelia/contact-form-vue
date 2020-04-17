@@ -1,8 +1,9 @@
 <template>
-  <BaseLabel :vuelidate="vuelidate" :label="label">
-    <span v-for="error in genErrorMessages" :key="error">
-      {{ error }}
-    </span>
+  <BaseLabel
+    :vuelidate="vuelidate"
+    :label="label"
+    :secondaryMessages="genErrorMessages"
+  >
     <input v-model="model" v-bind="$attrs" />
   </BaseLabel>
 </template>
@@ -10,13 +11,18 @@
 <script>
 import BaseLabel from "./BaseLabel.vue";
 
+const ERROR_MESSAGES = {
+  required: "Required.",
+  email: "Must be an email"
+};
+
 export default {
   inheritAttrs: false,
 
   components: { BaseLabel },
 
   data: () => ({
-    errorMessages: { required: "Required.", email: "Must be an email" }
+    errorMessages: ERROR_MESSAGES
   }),
 
   props: {
@@ -73,9 +79,5 @@ input {
   border-radius: 1px;
   padding: 0.5rem;
   margin-top: 0.2rem;
-}
-
-.error {
-  border-color: rgba(206, 65, 65, 0.6);
 }
 </style>

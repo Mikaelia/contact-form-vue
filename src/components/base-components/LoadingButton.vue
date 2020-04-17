@@ -7,53 +7,59 @@
   >
     <slot></slot>
     <transition name="fade" mode="in-out">
-      <span v-if="formState === 'loading'" key="loading" class="state-layer">
-        <img src="src/assets/loading.svg" class="loading-animation" />
-      </span>
-    </transition>
-    <transition name="fade" mode="in-out">
-      <span
-        v-if="formState === 'success'"
-        key="success"
-        data-test="success-state-success"
-        class="state-layer"
-      >
+      <span v-if="formState === 'loading'" class="state-layer">
         <svg
+          width="25"
+          height="25"
+          viewBox="0 0 38 38"
           xmlns="http://www.w3.org/2000/svg"
-          class="check"
-          viewBox="0 0 128 128"
+          stroke="#333"
         >
-          <circle cx="64" cy="64" r="59.4" />
-          <path d="M24.75 62l27.5 27.5 51-51" />
+          <g fill="none" fill-rule="evenodd">
+            <g transform="translate(1 1)" stroke-width="2">
+              <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
+              <path d="M36 18c0-9.94-8.06-18-18-18">
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from="0 18 18"
+                  to="360 18 18"
+                  dur="1s"
+                  repeatCount="indefinite"
+                />
+              </path>
+            </g>
+          </g>
         </svg>
       </span>
     </transition>
   </button>
 </template>
 <script>
+import { FormStates } from "../../config.js";
+
 export default {
   props: {
     state: {
       type: String,
-      validator: (value) => ["success", "loading"].includes(value),
-    },
+      validator: value => Object.values(FormStates).includes(value)
+    }
   },
 
   data: () => ({
-    formState: null,
+    formState: null
   }),
 
+  // update button state if new form state set
   watch: {
     state(newState) {
       this.formState = newState;
       if (newState === "success") {
-        setTimeout(() => {
-          this.formState = null;
-          this.$emit("reset");
-        }, 2000);
+        this.formState = null;
+        this.$emit("reset");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -72,70 +78,16 @@ button {
 
   .state-layer {
     background-color: #ffba27;
-  }
-  .state-layer {
-    background-color: inherit;
+    pointer-events: none;
   }
   .state-layer,
-  .loading-animation,
-  svg.check {
+  .loading-animation {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     padding: 0.5em;
-  }
-
-  &.success {
-    .state-layer {
-      background-color: #3ab795;
-    }
-
-    .fade-enter,
-    .fade-leave-to {
-      opacity: 1;
-      background-color: inherit;
-    }
-
-    .fade-enter-to,
-    .fade-leave {
-      background-color: #3ab795;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    margin-bottom: 10px;
-  }
-}
-
-svg.check {
-  circle,
-  path {
-    fill: none;
-    stroke: #333333;
-    stroke-linecap: round;
-    stroke-miterlimit: 10;
-    stroke-width: 8px;
-    stroke-dasharray: 400;
-  }
-
-  path {
-    animation: check-stroke 1s forwards;
-    animation-timing-function: ease-in;
-    stroke-linejoin: round;
-    opacity: 0;
-  }
-
-  @keyframes check-stroke {
-    0% {
-      stroke-dashoffset: 400px;
-      opacity: 1;
-    }
-    100% {
-      stroke-dashoffset: 0;
-      opacity: 1;
-    }
   }
 }
 </style>
