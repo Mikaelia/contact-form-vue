@@ -1,5 +1,9 @@
 <template>
-  <BaseForm :vuelidate="$v" :onSubmit="signUp" #default="{ error, formState }">
+  <BaseForm
+    :vuelidate="$v"
+    :onSubmit="submitContact"
+    #default="{ error, formState }"
+  >
     <p v-if="error">A server error has occured</p>
     <div v-if="step === 1" class="form-step">
       <BaseInput
@@ -7,10 +11,9 @@
         :vuelidate="$v.form.email"
         label="Email"
       />
-      <StyledButton :onClick="next">Next</StyledButton>
+      <NavButton :onClick="next">Next</NavButton>
     </div>
     <div v-if="step === 2" class="form-step">
-      <h1>Step One</h1>
       <BaseInput
         v-model="form.firstName"
         :vuelidate="$v.form.firstName"
@@ -30,7 +33,7 @@
         :customErrorMessages="{ minValue: 'Must be over 18' }"
       />
       <div class="button-wrapper">
-        <StyledButton :onClick="prev">Previous</StyledButton>
+        <NavButton :onClick="prev">Previous</NavButton>
 
         <LoadingButton
           :state="formState"
@@ -48,13 +51,13 @@
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./base-components/LoadingButton";
-import StyledButton from "./StyledButton.vue";
+import NavButton from "./NavButton.vue";
 import { db } from "../firebase";
 import { v4 } from "uuid";
 import { required, email, minValue } from "vuelidate/lib/validators";
 
 export default {
-  components: { BaseInput, BaseForm, LoadingButton, StyledButton },
+  components: { BaseInput, BaseForm, LoadingButton, NavButton },
 
   data: () => ({
     step: 1,
@@ -102,7 +105,7 @@ export default {
         age: 0
       };
     },
-    signUp() {
+    submitContact() {
       const userId = v4();
       const data = this.form;
       return db

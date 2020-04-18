@@ -1,5 +1,5 @@
 <template>
-  <button
+  <BaseButton
     type="submit"
     :disabled="formState !== null"
     :class="formState"
@@ -33,16 +33,26 @@
         </svg>
       </span>
     </transition>
-  </button>
+  </BaseButton>
 </template>
 <script>
 import { FormStates } from "../../config.js";
+import BaseButton from "./BaseButton.vue";
 
 export default {
+  components: {
+    BaseButton
+  },
   props: {
     state: {
       type: String,
       validator: value => Object.values(FormStates).includes(value)
+    }
+  },
+
+  methods: {
+    submit() {
+      this.$emit("submit");
     }
   },
 
@@ -64,17 +74,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 button.loading-button {
-  font-weight: 600;
-  background-color: white;
-  border-radius: 0.25rem;
-  padding: 1rem 2rem;
-  text-transform: uppercase;
+  border: 1px solid rgba(216, 240, 245, 0.596);
+  color: white;
   margin-top: 0;
-
-  letter-spacing: 1px;
-  position: relative;
+  background-color: white;
   color: #50a3a2;
-  cursor: pointer;
 
   &:hover {
     background-color: rgb(213, 108, 108);

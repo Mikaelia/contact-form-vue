@@ -1,21 +1,21 @@
 <template>
-  <div class="signup-page">
-    <div class="signup-form">
+  <div class="contact-page">
+    <div class="contact-form">
       <h1>Contact Information</h1>
-      <SignUpForm />
+      <ContactForm />
     </div>
   </div>
 </template>
 
 <script>
-import SignUpForm from "../components/SignUpForm";
+import ContactForm from "../components/ContactForm";
 
 export default {
-  components: { SignUpForm }
+  components: { ContactForm }
 };
 </script>
 <style lang="scss" scoped>
-.signup-page {
+.contact-page {
   display: flex;
   justify-content: center;
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
@@ -23,7 +23,7 @@ export default {
   padding: 2rem;
 }
 
-.signup-form {
+.contact-form {
   width: 80vw;
   max-width: 50rem;
 

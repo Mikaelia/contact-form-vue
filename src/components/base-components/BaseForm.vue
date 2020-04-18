@@ -10,17 +10,17 @@ export default {
   props: {
     onSubmit: {
       type: Function,
-      required: true,
+      required: true
     },
     vuelidate: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   data: () => ({
     error: null,
-    formState: null,
+    formState: null
   }),
 
   methods: {
@@ -33,12 +33,12 @@ export default {
           .then(() => {
             this.formState = FormStates.SUCCESS;
           })
-          .catch((error) => {
+          .catch(error => {
             this.error = error;
             this.formState = null;
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>

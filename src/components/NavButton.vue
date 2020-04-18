@@ -1,30 +1,23 @@
 <template>
-  <button @keypress.prevent="onClick" @click.prevent="onClick">
+  <BaseButton v-bind="$props">
     <slot></slot>
-  </button>
+  </BaseButton>
 </template>
 <script>
+import BaseButton from "./base-components/BaseButton";
 export default {
-  props: {
-    onClick: Function,
-    inverse: Boolean
-  }
+  components: { BaseButton },
+  props: { onClick: Function }
 };
 </script>
 <style lang="scss" scoped>
 button {
-  padding: 1rem 2rem;
   border: 1px solid rgba(216, 240, 245, 0.596);
   color: white;
-  border-radius: 0.25rem;
-  cursor: pointer;
   background: none;
-  transition-duration: 0.25s;
-  text-transform: uppercase;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  font-weight: 600;
 
   &:before {
     content: "";
