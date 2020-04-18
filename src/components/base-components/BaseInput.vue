@@ -72,12 +72,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 input {
-  width: 100%;
-  border: 1px solid #d6d6d6;
-  border-radius: 1px;
-  padding: 0.5rem;
-  margin-top: 0.2rem;
+  outline: 0;
+  border: 1px solid rgba(255, 255, 255, 0.452);
+  background-color: rgba(255, 255, 255, 0.233);
+  width: 25rem;
+  border-radius: 0.3rem;
+  padding: 1rem 1.5rem;
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  color: white;
+  transition-duration: 0.25s;
+  transform-origin: bottom left;
+  font-weight: 300;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.452);
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.788);
+    /* transform: scaleX(1.08); */
+    color: #50a3a2;
+  }
 }
 </style>

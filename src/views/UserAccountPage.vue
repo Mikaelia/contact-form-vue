@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="user.firstName" class="user-account-page">
     <h1>Welcome {{ username }}</h1>
     <p>You are {{ user.age }} years old. Congrats!</p>
     <p>Your email on file is: {{ user.email }}</p>
@@ -26,3 +26,8 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.user-account-page {
+  color: black;
+}
+</style>

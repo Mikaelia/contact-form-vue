@@ -63,21 +63,27 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-button {
-  font-weight: 900;
-  background-color: #ffba27;
-  padding: 10px 20px;
+button.loading-button {
+  font-weight: 600;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 1rem 2rem;
   text-transform: uppercase;
-  font-size: 16px;
+  margin-top: 0;
+
   letter-spacing: 1px;
   position: relative;
+  color: #50a3a2;
+  cursor: pointer;
 
   &:hover {
-    background-color: lighten(#ffba27, 5%);
+    background-color: rgb(213, 108, 108);
+    border-color: rgb(213, 108, 108);
+    color: white;
   }
 
   .state-layer {
-    background-color: #ffba27;
+    background-color: rgb(213, 108, 108);
     pointer-events: none;
   }
   .state-layer,
