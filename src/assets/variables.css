@@ -1,0 +1,31 @@
+:root {
+  /***** FONT VARIABLES *****/
+
+  /* Font family */
+  --f-primary: "Source Sans Pro", sans-serif;
+  --f-secondary: avenir, helvetica, arial, sans-serif;
+
+  /* Font sizes */
+  --f-small: 1.5rem;
+  --f-med: 2rem;
+  --f-large: 4rem;
+
+  /* Line Height */
+  --lh-small: 1.5rem;
+  --lh-med: 2rem;
+
+  /* Border Radius */
+  --br-1: 0.3rem;
+  --br-2: 1rem;
+
+  /* Colors */
+  --c-black: rgb(16, 23, 41);
+  --c-red: rgb(213, 108, 108);
+  --c-blue: #429489;
+  --c-blue-text: #306d65;
+  --c-green: #53e3a6;
+  --c-semi-white-1: rgba(255, 255, 255, 0.233);
+  --c-semi-white-2: rgba(255, 255, 255, 0.452);
+  --c-semi-white-3: rgba(216, 240, 245, 0.596);
+  --c-semi-white-4: rgba(255, 255, 255, 0.788);
+}

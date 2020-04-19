@@ -1,7 +1,7 @@
 <template>
   <label v-if="label" class="field-label">
-    <div class="text-wrapper">
-      <span class="field-label-text" data-test="form-label-text">
+    <div>
+      <span class="label-text" data-test="field-label-text">
         {{ label }}
       </span>
       <span
@@ -38,30 +38,29 @@ export default {
 <style lang="scss" scoped>
 div {
   display: flex;
-}
-
-.text-wrapper {
-  display: flex;
   align-items: center;
-  line-height: 2rem;
   justify-content: space-between;
   padding-bottom: 0.5rem;
+  line-height: var(--lh-med);
 }
 
-label .field-label-text {
-  text-transform: uppercase;
+.label-text {
+  font-size: var(--f-small);
   font-weight: 400;
-  font-size: 1.5rem;
   letter-spacing: 0.2rem;
 }
 
 .secondary-message {
-  color: white;
-  font-weight: bold;
-  background: rgb(213, 108, 108);
-  line-height: 1.5rem;
   padding: 0 0.5rem;
+  border-radius: var(--br-1);
+  background: var(--c-red);
+  color: white;
+  font-weight: 600;
+  line-height: var(--lh-med);
+}
+
+.label-text,
+.secondary-message {
   text-transform: uppercase;
-  border-radius: 0.3rem;
 }
 </style>

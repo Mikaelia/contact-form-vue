@@ -1,6 +1,6 @@
 <template>
   <div class="contact-page">
-    <div class="contact-form">
+    <div class="contact-form-wrapper">
       <h1>Contact Information</h1>
       <ContactForm />
     </div>
@@ -18,19 +18,23 @@ export default {
 .contact-page {
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
   height: 100%;
   padding: 2rem;
+  background: linear-gradient(
+    to bottom right,
+    var(--c-blue) 0%,
+    var(--c-green) 100%
+  );
 }
 
-.contact-form {
+.contact-form-wrapper {
   width: 80vw;
   max-width: 50rem;
 
   h1 {
-    font-weight: 300;
-    font-size: 3rem;
     margin-bottom: 3rem;
+    font-size: var(--f-large);
+    font-weight: 300;
   }
 }
 </style>

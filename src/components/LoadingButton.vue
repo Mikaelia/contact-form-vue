@@ -13,7 +13,7 @@
           height="25"
           viewBox="0 0 38 38"
           xmlns="http://www.w3.org/2000/svg"
-          stroke="#333"
+          stroke="white"
         >
           <g fill="none" fill-rule="evenodd">
             <g transform="translate(1 1)" stroke-width="2">
@@ -36,8 +36,8 @@
   </BaseButton>
 </template>
 <script>
-import { FormStates } from "../../config.js";
-import BaseButton from "./BaseButton.vue";
+import { FormStates } from "../config.js";
+import BaseButton from "./base-components/BaseButton.vue";
 
 export default {
   components: {
@@ -74,30 +74,35 @@ export default {
 </script>
 <style lang="scss" scoped>
 button.loading-button {
-  border: 1px solid rgba(216, 240, 245, 0.596);
-  color: white;
+  position: relative;
   margin-top: 0;
+  overflow: hidden;
+  border: 1px solid var(--c-semi-white-4);
   background-color: white;
-  color: #50a3a2;
+  color: var(--c-blue);
 
-  &:hover {
-    background-color: rgb(213, 108, 108);
-    border-color: rgb(213, 108, 108);
-    color: white;
+  &.loading {
+    border: 1px solid var(--c-red);
   }
 
   .state-layer {
-    background-color: rgb(213, 108, 108);
+    background-color: var(--c-red);
     pointer-events: none;
   }
+
   .state-layer,
   .loading-animation {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     padding: 0.5em;
+  }
+
+  &:hover {
+    border-color: var(--c-red);
+    background-color: var(--c-red);
+    color: white;
   }
 }
 </style>

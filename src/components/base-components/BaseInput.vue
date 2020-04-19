@@ -74,28 +74,27 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  outline: 0;
-  border: 1px solid rgba(255, 255, 255, 0.452);
-  background-color: rgba(255, 255, 255, 0.233);
-  width: 25rem;
-  border-radius: 0.3rem;
-  padding: 1rem 1.5rem;
   display: block;
-  text-align: center;
-  font-size: 1.8rem;
-  color: white;
-  transition-duration: 0.25s;
+  width: 25rem;
+  padding: 1rem 1.5rem;
   transform-origin: bottom left;
+  transition-duration: 0.25s;
+  border: 1px solid var(--c-semi-white-2);
+  border-radius: var(--br-1);
+  outline: 0;
+  background-color: var(--c-semi-white-1);
+  color: white;
+  font-size: var(--f-med);
   font-weight: 300;
+  text-align: center;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.452);
+    background-color: var(--c-semi-white-2);
   }
 
   &:focus {
-    background-color: rgba(255, 255, 255, 0.788);
-    /* transform: scaleX(1.08); */
-    color: #50a3a2;
+    background-color: var(--c-semi-white-4);
+    color: var(--c-blue-text);
   }
 }
 </style>

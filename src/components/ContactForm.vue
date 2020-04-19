@@ -35,11 +35,7 @@
       <div class="button-wrapper">
         <NavButton :onClick="prev">Previous</NavButton>
 
-        <LoadingButton
-          :state="formState"
-          class="signup-register-btn"
-          data-test="signup-form-submit"
-        >
+        <LoadingButton :state="formState" data-test="contact-form-submit">
           Submit
         </LoadingButton>
       </div>
@@ -50,7 +46,7 @@
 <script>
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
-import LoadingButton from "./base-components/LoadingButton";
+import LoadingButton from "./LoadingButton";
 import NavButton from "./NavButton.vue";
 import { db } from "../firebase";
 import { v4 } from "uuid";
@@ -122,15 +118,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 form {
-  /* background: rgba(213, 209, 209, 0.24); */
-  border: 2px solid rgba(216, 240, 245, 0.596);
-  border-radius: 1rem;
   padding: 2rem;
+  border: 0.2rem solid var(--c-semi-white-3);
+  border-radius: var(--br-2);
   box-shadow: 0.5rem 0.5rem 1.5rem 1px rgba(0, 0, 0, 0.1);
-}
-
-form * + * {
-  margin-top: 2rem;
+  * + * {
+    margin-top: 2rem;
+  }
 }
 
 .form-step {
