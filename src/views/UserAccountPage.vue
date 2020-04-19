@@ -6,8 +6,7 @@
         You are <span>{{ user.age }} </span>years old. Congrats!
       </p>
       <p>
-        Your email on file is: <span>{{ user.email }}</span
-        >{
+        Your email on file is: <span>{{ user.email }}</span>
       </p>
     </div>
     <NavButton :onClick="returnHome">Back to form</NavButton>
@@ -50,7 +49,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 2rem;
+  padding: 3rem;
   background: linear-gradient(
     to bottom right,
     var(--c-blue) 0%,
@@ -62,7 +61,7 @@ export default {
     width: 80vw;
     max-width: 80rem;
     margin-bottom: 2rem;
-    padding: 2rem;
+    padding: 5rem;
     border-radius: var(--br-1);
     background: var(--c-semi-white-2);
   }
