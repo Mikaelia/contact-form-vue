@@ -4,7 +4,11 @@
     :label="label"
     :secondaryMessages="genErrorMessages"
   >
-    <input v-model="model" v-bind="$attrs" />
+    <input
+      v-model="model"
+      v-bind="$attrs"
+      :aria-invalid="genErrorMessages.length > 0"
+    />
   </BaseLabel>
 </template>
 
@@ -78,7 +82,7 @@ export default {
 <style lang="scss" scoped>
 input {
   display: block;
-  width: 25rem;
+  width: 100%;
   padding: 1rem 1.5rem;
   transform-origin: bottom left;
   transition-duration: 0.25s;

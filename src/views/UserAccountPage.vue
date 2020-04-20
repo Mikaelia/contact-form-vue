@@ -1,13 +1,16 @@
 <template>
   <div class="user-account-page">
-    <div v-if="user.firstName">
-      <h1>Welcome {{ username }}</h1>
-      <p>
-        You are <span>{{ user.age }}</span> years old. Congrats!
-      </p>
-      <p>
-        Your email on file is: <span>{{ user.email }}</span>
-      </p>
+    <div class="user-account-info">
+      <div v-if="user.firstName">
+        <h1>Welcome {{ username }}</h1>
+        <p>
+          You are <span>{{ user.age }}</span> years old. Congrats!
+        </p>
+        <p>
+          Your email on file is: <span>{{ user.email }}</span>
+        </p>
+      </div>
+      <div v-else class="loading"><p>Loading...</p></div>
     </div>
     <NavButton :onClick="returnHome">Back to form</NavButton>
   </div>
@@ -59,9 +62,10 @@ export default {
   );
   color: var(--c-black);
 
-  div {
+  .user-account-info {
     width: 80vw;
     max-width: 80rem;
+    min-height: 21rem;
     margin-bottom: 2rem;
     padding: 5rem;
     border: 2px solid var(--c-semi-white-3);

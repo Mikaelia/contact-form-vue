@@ -16,6 +16,7 @@
         :vuelidate="$v.form.email"
         label="Email"
         id="email"
+        required
       />
       <NavButton :onClick="next">Next</NavButton>
     </div>
@@ -25,6 +26,7 @@
         :vuelidate="$v.form.firstName"
         label="First Name"
         id="firstname"
+        required
       />
       <BaseInput
         v-model="form.middleName"
@@ -36,6 +38,7 @@
         :vuelidate="$v.form.lastName"
         label="Last Name"
         id="lastname"
+        required
       />
       <BaseInput
         v-model.number="form.age"
@@ -44,6 +47,7 @@
         label="Age"
         id="age"
         :customErrorMessages="{ minValue: 'Must be over 18' }"
+        required
       />
       <div class="button-wrapper">
         <NavButton :onClick="prev">Previous</NavButton>
