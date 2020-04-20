@@ -11,9 +11,10 @@
 import ContactForm from "../components/ContactForm";
 
 export default {
-  components: { ContactForm }
+  components: { ContactForm },
 };
 </script>
+
 <style lang="scss" scoped>
 .contact-page {
   display: flex;
@@ -30,9 +31,9 @@ export default {
 .contact-form-wrapper {
   width: 80vw;
   max-width: 50rem;
-
+  margin-top: 4rem;
   h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     font-size: var(--f-large);
     font-weight: 300;
   }

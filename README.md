@@ -1,29 +1,37 @@
 # zenform
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Technical Decisions
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Styling
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+One of the features that I enjoy while working with Vue is the ability to unite a component's HTML, CSS, and Javascript within a single file. Vue also offers builtin local CSS scoping, and supports preprocessors such as Sass. While I took advantage of locally scoped styles for this project, I also dedicated a file to global styles that could be shared throughout the application. These styles consist of basic resets, application-wide font styles, etc. and live in `App.vue`. In addition, it's useful to have a file dedicated to CSS variables that they might be reused, and changed quickly if need be. I decided to extract certain text, color, and border-radius values variables into `variables.css` for this reason.
+
+### Validation
+
+Instead of writing my own validators for each input field, I implemented Vuelidate. I chose Vuelidate under the assumption that prebuilt validators are better tested, less error prone, and would save the developer much time in catching input errors. In addition, custom validators can be easily added to complement Vuelidate's premade ones, so the tool is quite extensible.
+
+### Data Storage
+
+For storing user data, I used Firebase. I've used Firebase in the past for simple projects, and in my opinion it's a great way to get up and running quickly with data storage without having to spin up your own backend. It also made more sense to me than implementing a Vuex store, as forms in the wild normally post to databases, and I wanted to mimic that functionality. Firebase tools allow me to easily push new data to my cloud storage, and retrieve it elsewhere in my application. I saw this as a good solution to developing a page with specific user information.
+
+### File Organization / Component Design
+
+I chose to break down my the form into generic, "base" components in order to increase their reusability and give myself flexibility in regards to having tools to compose any future forms I might need to create. These components-- BaseInput, BaseLabel, BaseForm, BaseButton live in their own 'base-components' folder. The components that utilize these base components live one directory above.

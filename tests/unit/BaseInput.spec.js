@@ -2,12 +2,19 @@ import { shallowMount } from "@vue/test-utils";
 import BaseInput from "@/components/base-components/BaseInput.vue";
 
 describe("BaseInput.vue", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(BaseInput);
+  });
+
+  afterEach(() => {
+    wrapper.destroy();
+  });
   it("renders a vue instance", () => {
-    expect(shallowMount(BaseInput).isVueInstance()).toBeTruthy();
+    expect(wrapper.isVueInstance()).toBeTruthy();
   });
 
   it("updates model with prop value", () => {
-    const wrapper = shallowMount(BaseInput);
     expect(wrapper.vm.model).toBeNull();
 
     wrapper.setProps({ value: "test val" });
@@ -15,8 +22,14 @@ describe("BaseInput.vue", () => {
   });
 
   it("emits input changes", () => {
-    const wrapper = shallowMount(BaseInput);
     wrapper.find("input").setValue("test val");
     expect(wrapper.emitted("input")[0]).toEqual(["test val"]);
+  });
+
+  it("generates error messages based on validation errors", () => {
+    wrapper.setProps({
+      vuelidate: { required: false, $params: { required: "required" } },
+    });
+    expect(wrapper.vm.genErrorMessages).toEqual(["Required."]);
   });
 });

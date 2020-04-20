@@ -1,13 +1,13 @@
 <template>
   <BaseButton
-    type="submit"
-    :disabled="formState !== null"
-    :class="formState"
+    :class="state"
     class="loading-button"
+    type="submit"
+    :disabled="state !== null"
   >
     <slot></slot>
     <transition name="fade" mode="in-out">
-      <span v-if="formState === 'loading'" class="state-layer">
+      <span v-if="state === 'loading'" class="state-layer">
         <svg
           width="25"
           height="25"
@@ -41,35 +41,25 @@ import BaseButton from "./base-components/BaseButton.vue";
 
 export default {
   components: {
-    BaseButton
+    BaseButton,
   },
   props: {
     state: {
       type: String,
-      validator: value => Object.values(FormStates).includes(value)
-    }
+      validator: (value) => Object.values(FormStates).includes(value),
+    },
   },
-
-  methods: {
-    submit() {
-      this.$emit("submit");
-    }
-  },
-
-  data: () => ({
-    formState: null
-  }),
 
   // update button state if new form state set
   watch: {
     state(newState) {
-      this.formState = newState;
+      this.state = newState;
       if (newState === "success") {
-        this.formState = null;
+        this.state = null;
         this.$emit("reset");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -2,14 +2,20 @@
   <BaseForm
     :vuelidate="$v"
     :onSubmit="submitContact"
-    #default="{ error, formState }"
+    v-slot="{ error, formState }"
   >
-    <p v-if="error">A server error has occured</p>
+    <transition name="slide-fade">
+      <p class="form-error" v-if="error">
+        {{ error }}
+      </p>
+    </transition>
+
     <div v-if="step === 1" class="form-step">
       <BaseInput
         v-model="form.email"
         :vuelidate="$v.form.email"
         label="Email"
+        id="email"
       />
       <NavButton :onClick="next">Next</NavButton>
     </div>
@@ -18,18 +24,25 @@
         v-model="form.firstName"
         :vuelidate="$v.form.firstName"
         label="First Name"
+        id="firstname"
       />
-      <BaseInput v-model="form.middleName" label="Middle Name" />
+      <BaseInput
+        v-model="form.middleName"
+        label="Middle Name"
+        id="middlename"
+      />
       <BaseInput
         v-model="form.lastName"
         :vuelidate="$v.form.lastName"
         label="Last Name"
+        id="lastname"
       />
       <BaseInput
         v-model.number="form.age"
+        type="number"
         :vuelidate="$v.form.age"
         label="Age"
-        type="number"
+        id="age"
         :customErrorMessages="{ minValue: 'Must be over 18' }"
       />
       <div class="button-wrapper">
@@ -62,27 +75,27 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: null
-    }
+      age: null,
+    },
   }),
 
   validations: {
     form: {
       email: {
         required,
-        email
+        email,
       },
       firstName: {
-        required
+        required,
       },
       lastName: {
-        required
+        required,
       },
       age: {
         required,
-        minValue: minValue(18)
-      }
-    }
+        minValue: minValue(18),
+      },
+    },
   },
 
   methods: {
@@ -98,7 +111,7 @@ export default {
         firstName: "",
         middleName: "",
         lastName: "",
-        age: 0
+        age: 0,
       };
     },
     submitContact() {
@@ -112,17 +125,20 @@ export default {
           this.resetForm();
           this.$router.push(`/user/${userId}`);
         });
-    }
-  }
+    },
+  },
 };
 </script>
+
 <style lang="scss" scoped>
 form {
-  padding: 2rem;
+  position: relative;
+  padding: 3rem 2rem;
+  overflow: hidden;
   border: 0.2rem solid var(--c-semi-white-3);
   border-radius: var(--br-2);
   box-shadow: 0.5rem 0.5rem 1.5rem 1px rgba(0, 0, 0, 0.1);
-  * + * {
+  label + * {
     margin-top: 2rem;
   }
 }
@@ -141,5 +157,25 @@ form {
   & > * + * {
     margin-left: 1rem;
   }
+}
+
+.form-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--c-red);
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateY(-13px);
+  opacity: 0;
 }
 </style>

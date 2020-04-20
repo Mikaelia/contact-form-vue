@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import BaseLabel from "@/components/base-components/BaseLabel.vue";
 
 describe("BaseLabel.vue", () => {
-  const LABEL_TEXT = '[data-test="form-label-text"]';
+  const LABEL_TEXT = '[data-test="field-label-text"]';
 
   it("renders a vue instance", () => {
     const wrapper = shallowMount(BaseLabel);

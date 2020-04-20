@@ -13,7 +13,7 @@ import BaseLabel from "./BaseLabel.vue";
 
 const ERROR_MESSAGES = {
   required: "Required.",
-  email: "Must be an email"
+  email: "Must be an email",
 };
 
 export default {
@@ -22,17 +22,17 @@ export default {
   components: { BaseLabel },
 
   data: () => ({
-    errorMessages: ERROR_MESSAGES
+    errorMessages: ERROR_MESSAGES,
   }),
 
   props: {
     vuelidate: Object,
     value: {
       type: [String, Number, Boolean],
-      default: null
+      default: null,
     },
     label: String,
-    customErrorMessages: [Object]
+    customErrorMessages: [Object],
   },
 
   computed: {
@@ -42,11 +42,11 @@ export default {
       },
       set(value) {
         this.$emit("input", value);
-      }
+      },
     },
 
     genErrorMessages() {
-      return this.errors.map(v => {
+      return this.errors.map((v) => {
         if (this.customErrorMessages && this.customErrorMessages[v])
           return this.customErrorMessages[v];
         if (this.errorMessages[v]) return this.errorMessages[v];
@@ -58,17 +58,17 @@ export default {
       if (!this.vuelidate || !this.invalid) {
         return [];
       }
-      return Object.keys(this.vuelidate.$params).filter(v => {
+      return Object.keys(this.vuelidate.$params).filter((v) => {
         if (!this.vuelidate[v]) return v;
       });
-    }
+    },
   },
 
   methods: {
     invalid() {
       return this.vuelidate.$dirty && this.vuelidate.$invalid;
-    }
-  }
+    },
+  },
 };
 </script>
 

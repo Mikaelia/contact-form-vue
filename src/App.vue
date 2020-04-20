@@ -3,6 +3,7 @@
     <router-view />
   </div>
 </template>
+
 <script>
 import "./assets/variables.css";
 export default {};

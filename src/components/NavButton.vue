@@ -5,6 +5,7 @@
 </template>
 <script>
 import BaseButton from "./base-components/BaseButton";
+
 export default {
   components: { BaseButton },
   props: { onClick: Function }

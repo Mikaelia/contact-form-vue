@@ -1,9 +1,9 @@
 <template>
-  <div v-if="user.firstName" class="user-account-page">
-    <div>
+  <div class="user-account-page">
+    <div v-if="user.firstName">
       <h1>Welcome {{ username }}</h1>
       <p>
-        You are <span>{{ user.age }} </span>years old. Congrats!
+        You are <span>{{ user.age }}</span> years old. Congrats!
       </p>
       <p>
         Your email on file is: <span>{{ user.email }}</span>
@@ -18,29 +18,29 @@ import NavButton from "../components/NavButton";
 
 export default {
   components: {
-    NavButton
+    NavButton,
   },
   data: () => ({
-    user: null
+    user: null,
   }),
 
   firestore() {
     return {
-      user: db.collection("users").doc(this.$route.params.id)
+      user: db.collection("users").doc(this.$route.params.id),
     };
   },
 
   computed: {
     username: function() {
       return `${this.user.firstName} ${this.user.middleName} ${this.user.lastName}`;
-    }
+    },
   },
 
   methods: {
     returnHome() {
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -62,9 +62,11 @@ export default {
     max-width: 80rem;
     margin-bottom: 2rem;
     padding: 5rem;
+    border: 2px solid var(--c-semi-white-3);
     border-radius: var(--br-1);
     background: var(--c-semi-white-2);
   }
+
   p {
     font-size: var(--f-med);
   }

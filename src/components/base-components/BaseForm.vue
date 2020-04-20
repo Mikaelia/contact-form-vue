@@ -3,6 +3,7 @@
     <slot :error="error" :formState="formState" />
   </form>
 </template>
+
 <script>
 import { FormStates } from "../../config.js";
 
@@ -10,35 +11,38 @@ export default {
   props: {
     onSubmit: {
       type: Function,
-      required: true
+      required: true,
     },
     vuelidate: {
       type: Object,
-      required: true
-    }
+    },
   },
 
   data: () => ({
     error: null,
-    formState: null
+    formState: null,
   }),
 
   methods: {
     async submit() {
-      this.vuelidate.$touch();
+      if (this.vuelidate) this.vuelidate.$touch();
       this.error = null;
-      if (!this.vuelidate.$invalid) {
+      if (!this.vuelidate || !this.vuelidate.$invalid) {
         this.formState = FormStates.LOADING;
         await this.onSubmit()
           .then(() => {
             this.formState = FormStates.SUCCESS;
           })
-          .catch(error => {
+          .catch((error) => {
             this.error = error;
             this.formState = null;
           });
       }
-    }
-  }
+      this.error = "There are errors in input fields";
+      setTimeout(() => {
+        this.error = null;
+      }, 2000);
+    },
+  },
 };
 </script>

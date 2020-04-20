@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import SignUpPage from "../views/SignUpPage.vue";
+import AddContactPage from "../views/AddContactPage.vue";
 import UserAccountPage from "../views/UserAccountPage.vue";
 
 Vue.use(VueRouter);
@@ -8,8 +8,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "signup",
-    component: SignUpPage,
+    name: "addcontact",
+    component: AddContactPage,
   },
   {
     path: "/user/:id",
