@@ -3,13 +3,15 @@
     <slot></slot>
   </button>
 </template>
+
 <script>
 export default {
   props: {
-    onClick: Function
-  }
+    onClick: Function,
+  },
 };
 </script>
+
 <style lang="scss" scoped>
 button {
   padding: 1rem 2rem;

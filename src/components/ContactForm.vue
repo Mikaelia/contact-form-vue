@@ -9,14 +9,13 @@
         {{ error }}
       </p>
     </transition>
-
     <div v-if="step === 1" class="form-step">
       <BaseInput
         v-model="form.email"
         :vuelidate="$v.form.email"
         label="Email"
         id="email"
-        required
+        aria-required="true"
       />
       <NavButton :onClick="next">Next</NavButton>
     </div>
@@ -26,7 +25,7 @@
         :vuelidate="$v.form.firstName"
         label="First Name"
         id="firstname"
-        required
+        aria-required="true"
       />
       <BaseInput
         v-model="form.middleName"
@@ -38,7 +37,7 @@
         :vuelidate="$v.form.lastName"
         label="Last Name"
         id="lastname"
-        required
+        aria-required="true"
       />
       <BaseInput
         v-model.number="form.age"
@@ -47,11 +46,10 @@
         label="Age"
         id="age"
         :customErrorMessages="{ minValue: 'Must be over 18' }"
-        required
+        aria-required="true"
       />
       <div class="button-wrapper">
         <NavButton :onClick="prev">Previous</NavButton>
-
         <LoadingButton :state="formState" data-test="contact-form-submit">
           Submit
         </LoadingButton>
@@ -61,13 +59,13 @@
 </template>
 
 <script>
+import { db } from "../firebase";
+import { v4 } from "uuid";
+import { required, email, minValue } from "vuelidate/lib/validators";
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./LoadingButton";
 import NavButton from "./NavButton.vue";
-import { db } from "../firebase";
-import { v4 } from "uuid";
-import { required, email, minValue } from "vuelidate/lib/validators";
 
 export default {
   components: { BaseInput, BaseForm, LoadingButton, NavButton },
@@ -105,6 +103,7 @@ export default {
   methods: {
     prev() {
       this.step--;
+      // shift focus to correct element
       this.$nextTick(() => document.querySelector("#email").focus());
     },
 
@@ -126,6 +125,7 @@ export default {
     submitContact() {
       const userId = v4();
       const data = this.form;
+      // send to firebase
       return db
         .collection("users")
         .doc(userId)
