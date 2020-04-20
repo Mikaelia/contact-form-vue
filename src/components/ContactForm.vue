@@ -105,10 +105,12 @@ export default {
   methods: {
     prev() {
       this.step--;
+      this.$nextTick(() => document.querySelector("#email").focus());
     },
 
     next() {
       this.step++;
+      this.$nextTick(() => document.querySelector("#firstname").focus());
     },
 
     resetForm() {

@@ -12,7 +12,9 @@
       </div>
       <div v-else class="loading"><p>Loading...</p></div>
     </div>
-    <NavButton :onClick="returnHome">Back to form</NavButton>
+    <NavButton :onClick="returnHome" class="home-button"
+      >Back to form</NavButton
+    >
   </div>
 </template>
 
@@ -38,6 +40,10 @@ export default {
     username: function() {
       return `${this.user.firstName} ${this.user.middleName} ${this.user.lastName}`;
     },
+  },
+
+  mounted: () => {
+    document.querySelector(".home-button").focus();
   },
 
   methods: {
