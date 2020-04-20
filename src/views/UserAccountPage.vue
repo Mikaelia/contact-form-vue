@@ -12,6 +12,7 @@
     <NavButton :onClick="returnHome">Back to form</NavButton>
   </div>
 </template>
+
 <script>
 import { db } from "../firebase";
 import NavButton from "../components/NavButton";
@@ -43,6 +44,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .user-account-page {
   display: flex;

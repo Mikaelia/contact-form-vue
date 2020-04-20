@@ -10,6 +10,7 @@ describe("BaseInput.vue", () => {
   afterEach(() => {
     wrapper.destroy();
   });
+
   it("renders a vue instance", () => {
     expect(wrapper.isVueInstance()).toBeTruthy();
   });

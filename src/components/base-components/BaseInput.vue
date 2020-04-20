@@ -47,8 +47,10 @@ export default {
 
     genErrorMessages() {
       return this.errors.map((v) => {
+        // use custom error messages if set
         if (this.customErrorMessages && this.customErrorMessages[v])
           return this.customErrorMessages[v];
+        // use default
         if (this.errorMessages[v]) return this.errorMessages[v];
         return "Invalid Entry";
       });
@@ -58,6 +60,7 @@ export default {
       if (!this.vuelidate || !this.invalid) {
         return [];
       }
+      // filter out errored rules
       return Object.keys(this.vuelidate.$params).filter((v) => {
         if (!this.vuelidate[v]) return v;
       });

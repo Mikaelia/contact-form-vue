@@ -32,6 +32,7 @@ export default {
   width: 80vw;
   max-width: 50rem;
   margin-top: 4rem;
+
   h1 {
     margin-bottom: 4rem;
     font-size: var(--f-large);

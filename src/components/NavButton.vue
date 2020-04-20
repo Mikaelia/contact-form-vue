@@ -8,9 +8,10 @@ import BaseButton from "./base-components/BaseButton";
 
 export default {
   components: { BaseButton },
-  props: { onClick: Function }
+  props: { onClick: Function },
 };
 </script>
+
 <style lang="scss" scoped>
 button {
   position: relative;

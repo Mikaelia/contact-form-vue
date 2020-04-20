@@ -102,9 +102,11 @@ export default {
     prev() {
       this.step--;
     },
+
     next() {
       this.step++;
     },
+
     resetForm() {
       this.form = {
         email: "",
@@ -114,6 +116,7 @@ export default {
         age: 0,
       };
     },
+
     submitContact() {
       const userId = v4();
       const data = this.form;
@@ -170,9 +173,11 @@ form {
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
+
 .slide-fade-leave-active {
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
+
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateY(-13px);

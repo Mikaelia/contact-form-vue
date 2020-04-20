@@ -25,14 +25,16 @@ export default {
 
   methods: {
     async submit() {
-      if (this.vuelidate) this.vuelidate.$touch();
       this.error = null;
+      if (this.vuelidate) this.vuelidate.$touch();
+      // vuelidate is not used, or all inputs invalid
       if (!this.vuelidate || !this.vuelidate.$invalid) {
         this.formState = FormStates.LOADING;
         await this.onSubmit()
           .then(() => {
             this.formState = FormStates.SUCCESS;
           })
+          // error captured in slot context
           .catch((error) => {
             this.error = error;
             this.formState = null;
