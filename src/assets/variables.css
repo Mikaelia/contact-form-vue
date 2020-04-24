@@ -19,9 +19,11 @@
   /* Colors */
   --c-black: rgb(16, 23, 41);
   --c-red: #cb4848;
-  --c-blue: #429489;
-  --c-blue-text: #306d65;
-  --c-green: #53e3a6;
+  --c-green-1: #306d65;
+  --c-green-2: #429489;
+  --c-green-3: #53e3a6;
+  --c-blue: #1d08af;
+  --c-grey: rgba(128, 128, 128, 0.693);
   --c-semi-white-1: rgba(255, 255, 255, 0.233);
   --c-semi-white-2: rgba(255, 255, 255, 0.452);
   --c-semi-white-3: rgba(216, 240, 245, 0.596);

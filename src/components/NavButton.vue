@@ -5,10 +5,9 @@
 </template>
 <script>
 import BaseButton from "./base-components/BaseButton";
-
 export default {
   components: { BaseButton },
-  props: { onClick: Function },
+  props: { onClick: Function }
 };
 </script>
 
@@ -17,6 +16,7 @@ button {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  transition: all 0.25s ease, outline 0.1s;
   border: 1px solid var(--c-semi-white-3);
   background: none;
   color: white;
@@ -31,13 +31,14 @@ button {
     height: 100%;
     transform: scaleX(0);
     transform-origin: bottom left;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
     background: white;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--c-semi-white-4);
-    color: var(--c-blue);
+    color: var(--c-green-2);
 
     &:before {
       transform: scaleX(1);

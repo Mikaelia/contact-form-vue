@@ -24,22 +24,22 @@ import NavButton from "../components/NavButton";
 
 export default {
   components: {
-    NavButton,
+    NavButton
   },
   data: () => ({
-    user: null,
+    user: null
   }),
 
   firestore() {
     return {
-      user: db.collection("users").doc(this.$route.params.id),
+      user: db.collection("users").doc(this.$route.params.id)
     };
   },
 
   computed: {
     username: function() {
       return `${this.user.firstName} ${this.user.middleName} ${this.user.lastName}`;
-    },
+    }
   },
 
   mounted: () => {
@@ -49,8 +49,8 @@ export default {
   methods: {
     returnHome() {
       this.$router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -63,8 +63,8 @@ export default {
   padding: 3rem;
   background: linear-gradient(
     to bottom right,
-    var(--c-blue) 0%,
-    var(--c-green) 100%
+    var(--c-green-2) 0%,
+    var(--c-green-3) 100%
   );
   color: var(--c-black);
 

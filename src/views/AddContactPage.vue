@@ -11,7 +11,7 @@
 import ContactForm from "../components/ContactForm";
 
 export default {
-  components: { ContactForm },
+  components: { ContactForm }
 };
 </script>
 
@@ -23,8 +23,8 @@ export default {
   padding: 2rem;
   background: linear-gradient(
     to bottom right,
-    var(--c-blue) 0%,
-    var(--c-green) 100%
+    var(--c-green-2) 0%,
+    var(--c-green-3) 100%
   );
 }
 

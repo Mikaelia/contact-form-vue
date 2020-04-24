@@ -17,7 +17,7 @@ import BaseLabel from "./BaseLabel.vue";
 
 const ERROR_MESSAGES = {
   required: "Required.",
-  email: "Must be an email",
+  email: "Must be an email"
 };
 
 export default {
@@ -26,31 +26,31 @@ export default {
   components: { BaseLabel },
 
   data: () => ({
-    errorMessages: ERROR_MESSAGES,
+    errorMessages: ERROR_MESSAGES
   }),
 
   props: {
     vuelidate: Object,
     value: {
       type: [String, Number, Boolean],
-      default: null,
+      default: null
     },
     label: String,
-    customErrorMessages: [Object],
+    customErrorMessages: [Object]
   },
 
   computed: {
     model: {
       get() {
-        return this.value;
+        return this.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       },
       set(value) {
         this.$emit("input", value);
-      },
+      }
     },
 
     genErrorMessages() {
-      return this.errors.map((v) => {
+      return this.errors.map(v => {
         // use custom error messages if set
         if (this.customErrorMessages && this.customErrorMessages[v])
           return this.customErrorMessages[v];
@@ -65,17 +65,17 @@ export default {
         return [];
       }
       // filter out errored rules
-      return Object.keys(this.vuelidate.$params).filter((v) => {
+      return Object.keys(this.vuelidate.$params).filter(v => {
         if (!this.vuelidate[v]) return v;
       });
-    },
+    }
   },
 
   methods: {
     invalid() {
       return this.vuelidate.$dirty && this.vuelidate.$invalid;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -101,7 +101,13 @@ input {
 
   &:focus {
     background-color: var(--c-semi-white-4);
-    color: var(--c-blue-text);
+    color: var(--c-green-1);
+    &::placeholder {
+      color: var(--c-grey);
+    }
+  }
+  &::placeholder {
+    color: var(--c-semi-white-4);
   }
 }
 </style>

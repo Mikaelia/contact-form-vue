@@ -45,7 +45,12 @@
         :vuelidate="$v.form.age"
         label="Age"
         id="age"
-        :customErrorMessages="{ minValue: 'Must be over 18' }"
+        :customErrorMessages="{
+          minValue: 'Must be over 18',
+          maxValue: 'Must be under 110',
+          integer: 'Must be a whole number'
+        }"
+        max="110"
         aria-required="true"
       />
       <div class="button-wrapper">
@@ -61,7 +66,13 @@
 <script>
 import { db } from "../firebase";
 import { v4 } from "uuid";
-import { required, email, minValue } from "vuelidate/lib/validators";
+import {
+  required,
+  email,
+  minValue,
+  maxValue,
+  integer
+} from "vuelidate/lib/validators";
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./LoadingButton";
@@ -77,27 +88,29 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: null,
-    },
+      age: null
+    }
   }),
 
   validations: {
     form: {
       email: {
         required,
-        email,
+        email
       },
       firstName: {
-        required,
+        required
       },
       lastName: {
-        required,
+        required
       },
       age: {
         required,
-        minValue: minValue(18),
-      },
-    },
+        integer,
+        maxValue: maxValue(110),
+        minValue: minValue(18)
+      }
+    }
   },
 
   methods: {
@@ -118,7 +131,7 @@ export default {
         firstName: "",
         middleName: "",
         lastName: "",
-        age: 0,
+        age: 0
       };
     },
 
@@ -134,8 +147,8 @@ export default {
           this.resetForm();
           this.$router.push(`/user/${userId}`);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

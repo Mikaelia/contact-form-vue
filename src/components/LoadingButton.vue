@@ -41,13 +41,13 @@ import BaseButton from "./base-components/BaseButton.vue";
 
 export default {
   components: {
-    BaseButton,
+    BaseButton
   },
   props: {
     state: {
       type: String,
-      validator: (value) => Object.values(FormStates).includes(value),
-    },
+      validator: value => Object.values(FormStates).includes(value)
+    }
   },
 
   // update button state if new form state set
@@ -58,18 +58,18 @@ export default {
         this.state = null;
         this.$emit("reset");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
-button.loading-button {
+button {
   position: relative;
   margin-top: 0;
   overflow: hidden;
   border: 1px solid var(--c-semi-white-4);
   background-color: white;
-  color: var(--c-blue);
+  color: var(--c-green-2);
 
   &.loading {
     border: 1px solid var(--c-red);
