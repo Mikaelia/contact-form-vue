@@ -46,7 +46,7 @@
         label="Age"
         id="age"
         :customErrorMessages="{
-          minValue: 'Must be over 18',
+          minValue: 'Must at least 18',
           maxValue: 'Must be under 110',
           integer: 'Must be a whole number'
         }"
@@ -73,6 +73,7 @@ import {
   maxValue,
   integer
 } from "vuelidate/lib/validators";
+
 import BaseInput from "./base-components/BaseInput.vue";
 import BaseForm from "./base-components/BaseForm.vue";
 import LoadingButton from "./LoadingButton";
@@ -135,18 +136,24 @@ export default {
       };
     },
 
-    submitContact() {
+    async submitContact() {
       const userId = v4();
       const data = this.form;
+      // eslint-disable-next-line
+      let err, res;
+
       // send to firebase
-      return db
-        .collection("users")
-        .doc(userId)
-        .set(data)
-        .then(() => {
-          this.resetForm();
-          this.$router.push(`/user/${userId}`);
-        });
+      try {
+        await db
+          .collection("users")
+          .doc(userId)
+          .set(data);
+      } catch (err) {
+        return err;
+      }
+
+      this.resetForm();
+      this.$router.push(`/user/${userId}`);
     }
   }
 };

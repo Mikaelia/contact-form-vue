@@ -22,7 +22,7 @@ button {
   cursor: pointer;
 
   &:focus {
-    outline: 2px solid var(--c-blue);
+    outline: 2px solid #145a79;
   }
 }
 </style>

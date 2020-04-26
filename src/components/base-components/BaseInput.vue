@@ -36,12 +36,14 @@ export default {
       default: null
     },
     label: String,
-    customErrorMessages: [Object]
+    customErrorMessages: [Object],
+    type: String
   },
 
   computed: {
     model: {
       get() {
+        if (this.type === "number") return this.value;
         return this.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       },
       set(value) {

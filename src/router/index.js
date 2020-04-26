@@ -13,6 +13,7 @@ const routes = [
   },
   {
     path: "/user/:id",
+    name: "account",
     component: UserAccountPage,
   },
 ];

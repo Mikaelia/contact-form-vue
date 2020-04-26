@@ -11,40 +11,42 @@ export default {
   props: {
     onSubmit: {
       type: Function,
-      required: true,
+      required: true
     },
     vuelidate: {
-      type: Object,
-    },
+      type: Object
+    }
   },
 
   data: () => ({
     error: null,
-    formState: null,
+    formState: null
   }),
 
   methods: {
+    setError(error) {
+      this.error = error;
+      setTimeout(() => {
+        this.error = null;
+      }, 2000);
+      this.formState = null;
+    },
+
     async submit() {
       this.error = null;
       if (this.vuelidate) this.vuelidate.$touch();
       // vuelidate is not used, or all inputs invalid
       if (!this.vuelidate || !this.vuelidate.$invalid) {
         this.formState = FormStates.LOADING;
-        await this.onSubmit()
-          .then(() => {
-            this.formState = FormStates.SUCCESS;
-          })
-          // error captured in slot context
-          .catch((error) => {
-            this.error = error;
-            this.formState = null;
-          });
-      }
-      this.error = "There are errors in input fields";
-      setTimeout(() => {
-        this.error = null;
-      }, 2000);
-    },
-  },
+        let err = await this.onSubmit();
+
+        if (!err) this.formState = FormStates.SUCCESS;
+        // error captured in slot context
+        else {
+          this.setError(err);
+        }
+      } else this.setError("There are errors in input fields");
+    }
+  }
 };
 </script>

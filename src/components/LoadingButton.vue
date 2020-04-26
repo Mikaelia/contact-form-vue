@@ -56,7 +56,6 @@ export default {
       this.state = newState;
       if (newState === "success") {
         this.state = null;
-        this.$emit("reset");
       }
     }
   }
