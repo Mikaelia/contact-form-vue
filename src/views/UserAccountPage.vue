@@ -8,17 +8,17 @@
         <div class="plane-image"></div>
       </div>
 
-      <div v-if="user.firstName" class="user-information">
+      <div class="user-information">
         <div class="user-photo">
           <div class="user-icon"></div>
         </div>
-        <div class="user-details">
+        <div v-if="user.firstName" class="user-details">
           <p><span>Name: </span>{{ username }}</p>
           <p><span>Age: </span>{{ user.age }}</p>
           <p><span>Email: </span>{{ user.email }}</p>
         </div>
+        <div v-else class="loading"></div>
       </div>
-      <div v-else class="loading"><p>Loading...</p></div>
     </div>
     <NavButton :onClick="returnHome" class="home-button"
       >Back to form</NavButton
@@ -102,7 +102,7 @@ export default {
   }
 
   p {
-    font-size: var(--f-med);
+    font-size: 1.75rem;
     color: #252526;
   }
 
@@ -112,7 +112,10 @@ export default {
   }
 
   span {
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -170,5 +173,12 @@ export default {
     justify-content: center;
     padding: 2rem;
   }
+}
+
+.loading {
+  background: url("../assets/loading.svg") no-repeat;
+  margin: auto 0 auto 5rem;
+  height: 3rem;
+  width: 3rem;
 }
 </style>
