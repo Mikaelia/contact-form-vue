@@ -156,7 +156,6 @@ export default {
 
     @media (min-width: $bp-sm) {
       justify-content: flex-start;
-      padding-left: 12rem;
     }
   }
 
