@@ -1,8 +1,9 @@
 <template>
   <BaseButton
-    :class="state"
     class="loading-button"
+    :class="state"
     type="submit"
+    v-bind="$attrs"
     :disabled="state !== null"
   >
     <slot></slot>
@@ -66,16 +67,17 @@ button {
   position: relative;
   margin-top: 0;
   overflow: hidden;
-  border: 1px solid var(--c-semi-white-4);
-  background-color: white;
-  color: var(--c-green-2);
+  transition: all 0.2s ease;
+  border: 1px solid var(--c-green-4);
+  background-color: var(--c-green-4);
+  color: white;
 
   &.loading {
-    border: 1px solid var(--c-red);
+    border: 1px solid var(--c-pink);
   }
 
   .state-layer {
-    background-color: var(--c-red);
+    background-color: var(--c-pink);
     pointer-events: none;
   }
 
@@ -88,9 +90,11 @@ button {
     padding: 0.5em;
   }
 
-  &:hover {
-    border-color: var(--c-red);
-    background-color: var(--c-red);
+  &:hover,
+  &:focus {
+    border-color: var(--c-pink);
+    outline: none;
+    background-color: var(--c-pink);
     color: white;
   }
 }

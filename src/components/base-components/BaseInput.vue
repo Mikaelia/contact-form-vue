@@ -1,19 +1,25 @@
 <template>
-  <BaseLabel
-    :vuelidate="vuelidate"
-    :label="label"
-    :secondaryMessages="genErrorMessages"
-  >
-    <input
-      v-model="model"
-      v-bind="$attrs"
-      :aria-invalid="genErrorMessages.length > 0"
+  <div class="input-wrapper">
+    <BaseLabel :label="label" :required="isRequired">
+      <input
+        v-model="model"
+        v-bind="$attrs"
+        :type="type"
+        :aria-invalid="genErrorMessages.length > 0"
+      />
+    </BaseLabel>
+    <BaseErrorMessage
+      v-for="message in genErrorMessages"
+      :key="message"
+      :message="message"
+      class="secondary-message"
     />
-  </BaseLabel>
+  </div>
 </template>
 
 <script>
 import BaseLabel from "./BaseLabel.vue";
+import BaseErrorMessage from "./BaseErrorMessage.vue";
 
 const ERROR_MESSAGES = {
   required: "Required.",
@@ -23,7 +29,7 @@ const ERROR_MESSAGES = {
 export default {
   inheritAttrs: false,
 
-  components: { BaseLabel },
+  components: { BaseLabel, BaseErrorMessage },
 
   data: () => ({
     errorMessages: ERROR_MESSAGES
@@ -47,8 +53,13 @@ export default {
         return this.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       },
       set(value) {
+        this.vuelidate.$touch();
         this.$emit("input", value);
       }
+    },
+
+    isRequired() {
+      return this.vuelidate && this.vuelidate.$params.required;
     },
 
     genErrorMessages() {
@@ -63,7 +74,7 @@ export default {
     },
 
     errors() {
-      if (!this.vuelidate || !this.invalid) {
+      if (!this.vuelidate || !this.invalid()) {
         return [];
       }
       // filter out errored rules
@@ -82,34 +93,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 input {
   display: block;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 0;
   transform-origin: bottom left;
   transition-duration: 0.25s;
-  border: 1px solid var(--c-semi-white-2);
-  border-radius: var(--br-1);
+  border: none;
+  border-bottom: 1px solid var(--c-black);
   outline: 0;
-  background-color: var(--c-semi-white-1);
-  color: white;
+  color: var(--c-black);
   font-size: var(--f-med);
-  font-weight: 300;
-  text-align: center;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--spacing-sm);
+  line-height: var(--lh-med);
 
-  &:hover {
-    background-color: var(--c-semi-white-2);
-  }
-
-  &:focus {
-    background-color: var(--c-semi-white-4);
-    color: var(--c-green-1);
-    &::placeholder {
-      color: var(--c-grey);
-    }
-  }
   &::placeholder {
-    color: var(--c-semi-white-4);
+    color: var(--c-grey);
   }
+}
+
+.secondary-message {
+  position: absolute;
+  right: 0;
+  bottom: -2.5rem;
 }
 </style>

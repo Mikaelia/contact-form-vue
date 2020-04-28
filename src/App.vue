@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "./assets/variables.css";
+import "./assets/variables.scss";
 export default {};
 </script>
 
@@ -27,7 +27,6 @@ html {
 body {
   box-sizing: border-box;
   height: 100vh;
-  color: white;
   font-family: var(--f-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

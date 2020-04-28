@@ -4,13 +4,7 @@
       <span class="label-text" data-test="field-label-text">
         {{ label }}
       </span>
-      <span
-        v-for="message in secondaryMessages"
-        :key="message"
-        class="secondary-message"
-      >
-        {{ message }}
-      </span>
+      <span v-if="required" class="required-indicator">*</span>
     </div>
     <slot />
   </label>
@@ -24,6 +18,9 @@ export default {
     },
     secondaryMessages: {
       type: Array
+    },
+    required: {
+      type: Object
     }
   },
 
@@ -39,28 +36,22 @@ export default {
 div {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
   line-height: var(--lh-med);
 }
 
 .label-text {
-  font-size: var(--f-small);
-  font-weight: 400;
-  letter-spacing: 0.2rem;
-}
-
-.secondary-message {
-  padding: 0 0.5rem;
-  border-radius: var(--br-1);
-  background: var(--c-red);
-  color: white;
-  font-weight: 600;
-  line-height: var(--lh-med);
-}
-
-.label-text,
-.secondary-message {
+  font-size: var(--f-xsmall);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--spacing-md);
+  line-height: var(--lh-xsmall);
   text-transform: uppercase;
+}
+
+.required-indicator {
+  margin-left: 0.2rem;
+  color: var(--c-red);
+  font-size: var(--f-xsmall);
+  font-weight: var(--fw-mid);
+  line-height: var(--lh-small);
 }
 </style>

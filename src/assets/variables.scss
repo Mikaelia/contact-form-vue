@@ -1,0 +1,49 @@
+:root {
+  /* Font family */
+  --f-primary: "Montserrat", sans-serif;
+
+  /* Font sizes */
+  --f-xsmall: 1.5rem;
+  --f-small: 1.8rem;
+  --f-med: 2rem;
+  --f-large: 4rem;
+
+  /* Line Height */
+  --lh-xsmall: 1.8rem;
+  --lh-small: 2rem;
+  --lh-med: 2.5rem;
+  --lh-large: 5rem;
+
+  /* Letter Spacing */
+  --spacing-sm: 0.05em;
+  --spacing-md: 0.12em;
+
+  /* Font Weight */
+  --fw-light: 500;
+  --fw-mid: 600;
+  --fw-bold: 700;
+
+  /* Border Radius */
+  --br-1: 0.5rem;
+  --br-2: 1rem;
+  --br-3: 2rem;
+
+  /* Box Shadows */
+  --shadow-1: 10px 30px 80px rgba(26, 101, 74, 0.5),
+    4px 4px 15px rgba(23, 89, 65, 0.4);
+
+  /* Colors */
+  --c-black: rgb(34, 43, 39);
+  --c-red: #f75d53;
+  --c-pink: #c54ebf;
+  --c-green-2: #429489;
+  --c-green-3: #53e3a6;
+  --c-green-4: #4dc99c;
+  --c-grey: #636363;
+}
+
+/* Media Queries */
+$bp-xsm: 500px;
+$bp-sm: 700px;
+$bp-medium: 750px;
+$bp-large: 1000px;

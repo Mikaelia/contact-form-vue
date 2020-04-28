@@ -1,7 +1,6 @@
 <template>
   <div class="contact-page">
     <div class="contact-form-wrapper">
-      <h1>Contact Information</h1>
       <ContactForm />
     </div>
   </div>
@@ -11,32 +10,40 @@
 import ContactForm from "../components/ContactForm";
 
 export default {
-  components: { ContactForm }
+  components: { ContactForm },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/variables.scss";
 .contact-page {
-  display: flex;
-  justify-content: center;
+  position: relative;
   height: 100%;
   padding: 2rem;
-  background: linear-gradient(
-    to bottom right,
-    var(--c-green-2) 0%,
-    var(--c-green-3) 100%
-  );
+  background: white;
+
+  @media (min-width: $bp-medium) {
+    background: linear-gradient(
+      to bottom right,
+      var(--c-green-3) 0%,
+      var(--c-green-2) 100%
+    );
+  }
 }
 
 .contact-form-wrapper {
-  width: 80vw;
-  max-width: 50rem;
-  margin-top: 4rem;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-50%);
+}
 
-  h1 {
-    margin-bottom: 4rem;
-    font-size: var(--f-large);
-    font-weight: 300;
+@media (min-width: $bp-medium) {
+  .contact-form-wrapper {
+    top: 20%;
+    width: 70rem;
   }
 }
 </style>
