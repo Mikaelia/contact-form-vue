@@ -28,7 +28,7 @@ describe("BaseForm.vue", () => {
   });
 
   it("toggles form state to loading, success, and null", async () => {
-    wrapper.vm.submit();
+    wrapper.vm.submit(butto);
     expect(wrapper.vm.error).toBe(null);
     expect(wrapper.vm.formState).toBe("loading");
     await flushPromises();

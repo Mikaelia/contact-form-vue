@@ -68,7 +68,6 @@
       </div>
       <div v-else class="loading"></div>
     </div>
-
     <NavButton v-if="user.firstName" :onClick="returnHome" class="home-button"
       >Back to form</NavButton
     >
@@ -280,8 +279,9 @@ export default {
   margin-top: 3rem;
 
   @media (min-width: $bp-sm) {
+    margin-top: 8rem;
     margin-bottom: 3rem;
-    margin-left: 75%;
+    margin-left: 70%;
   }
 }
 </style>

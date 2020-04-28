@@ -11,8 +11,8 @@
 export default {
   props: {
     onClick: Function,
-    fullWidth: Boolean
-  }
+    fullWidth: Boolean,
+  },
 };
 </script>
 
@@ -26,6 +26,7 @@ button {
   line-height: var(--lh-med);
   text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
 
   &.full-width {
