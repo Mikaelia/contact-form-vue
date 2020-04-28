@@ -167,6 +167,16 @@ export default {
   },
 
   methods: {
+    sanitizeForm(v) {
+      return Object.entries(v).reduce((final, [key, value]) => {
+        if (value && typeof value === "string") {
+          final[key] = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        } else final[key] = value;
+
+        return final;
+      }, {});
+    },
+
     prev() {
       this.step--;
       // shift focus to correct element
@@ -190,7 +200,8 @@ export default {
 
     async submitContact() {
       const userId = v4();
-      const data = this.form;
+      const data = this.sanitizeForm(this.form);
+
       // eslint-disable-next-line
       let err, res;
 
@@ -310,9 +321,9 @@ button {
   left: 0;
   width: 100%;
   background: var(--c-red);
+  color: white;
   font-size: var(--f-small);
   font-weight: var(--fw-medium);
-  color: white;
 }
 
 .first-middle-wrapper,

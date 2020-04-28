@@ -135,7 +135,6 @@ export default {
   align-items: center;
   justify-content: center;
   height: 250px;
-  margin: auto;
   overflow: hidden;
   background: linear-gradient(
     to bottom right,
@@ -188,7 +187,7 @@ export default {
 
   @media (min-width: $bp-large) {
     margin-top: 12.6rem;
-    margin-left: 12rem;
+    margin-left: 8rem;
   }
 
   & .user-image {
@@ -207,6 +206,9 @@ export default {
     overflow: hidden;
 
     @media (min-width: $bp-medium) {
+      margin-left: 5rem;
+    }
+    @media (min-width: $bp-large) {
       margin-left: 7.5rem;
     }
   }

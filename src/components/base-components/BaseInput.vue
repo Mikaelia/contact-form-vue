@@ -49,11 +49,14 @@ export default {
   computed: {
     model: {
       get() {
-        if (this.type === "number") return this.value;
-        return this.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return this.value;
       },
       set(value) {
         this.vuelidate && this.vuelidate.$touch();
+        // const sanitized =
+        //   this.type === "number"
+        //     ? value
+        //     : value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         this.$emit("input", value);
       },
     },
