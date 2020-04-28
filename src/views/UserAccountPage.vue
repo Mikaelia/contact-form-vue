@@ -103,10 +103,6 @@ export default {
     },
   },
 
-  mounted: () => {
-    document.querySelector(".home-button").focus();
-  },
-
   methods: {
     capitalize(string) {
       return string && string[0].toUpperCase() + string.slice(1);
