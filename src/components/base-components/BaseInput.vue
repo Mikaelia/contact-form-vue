@@ -23,7 +23,7 @@ import BaseErrorMessage from "./BaseErrorMessage.vue";
 
 const ERROR_MESSAGES = {
   required: "Required.",
-  email: "Must be an email"
+  email: "Must be an email",
 };
 
 export default {
@@ -32,18 +32,18 @@ export default {
   components: { BaseLabel, BaseErrorMessage },
 
   data: () => ({
-    errorMessages: ERROR_MESSAGES
+    errorMessages: ERROR_MESSAGES,
   }),
 
   props: {
     vuelidate: Object,
     value: {
       type: [String, Number, Boolean],
-      default: null
+      default: null,
     },
     label: String,
     customErrorMessages: [Object],
-    type: String
+    type: String,
   },
 
   computed: {
@@ -53,9 +53,9 @@ export default {
         return this.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       },
       set(value) {
-        this.vuelidate.$touch();
+        this.vuelidate && this.vuelidate.$touch();
         this.$emit("input", value);
-      }
+      },
     },
 
     isRequired() {
@@ -63,7 +63,7 @@ export default {
     },
 
     genErrorMessages() {
-      return this.errors.map(v => {
+      return this.errors.map((v) => {
         // use custom error messages if set
         if (this.customErrorMessages && this.customErrorMessages[v])
           return this.customErrorMessages[v];
@@ -78,17 +78,17 @@ export default {
         return [];
       }
       // filter out errored rules
-      return Object.keys(this.vuelidate.$params).filter(v => {
+      return Object.keys(this.vuelidate.$params).filter((v) => {
         if (!this.vuelidate[v]) return v;
       });
-    }
+    },
   },
 
   methods: {
     invalid() {
       return this.vuelidate.$dirty && this.vuelidate.$invalid;
-    }
-  }
+    },
+  },
 };
 </script>
 

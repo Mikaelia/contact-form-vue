@@ -36,13 +36,12 @@ export default {
   top: 0;
   left: 50%;
   width: 100%;
-  height: 100%;
   transform: translateX(-50%);
 }
 
 @media (min-width: $bp-medium) {
   .contact-form-wrapper {
-    top: 20%;
+    top: 15%;
     width: 70rem;
   }
 }

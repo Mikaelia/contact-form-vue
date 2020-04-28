@@ -53,7 +53,13 @@
           id="email"
           aria-required="true"
         />
-        <NavButton :onClick="next" class="next-button">Next</NavButton>
+
+        <NavButton
+          :disabled="$v.form.email.$invalid"
+          :onClick="next"
+          class="next-button"
+          >Next</NavButton
+        >
       </div>
       <div v-if="step === 2" class="form-step">
         <div class="first-middle-wrapper">
@@ -65,6 +71,7 @@
             aria-required="true"
           />
           <BaseInput
+            type="text"
             v-model="form.middleName"
             label="Middle Name"
             id="middlename"
@@ -208,8 +215,10 @@ export default {
 @import "../assets/variables.scss";
 
 .contact-form {
+  position: relative;
   width: 100%;
   padding: 3rem 2rem;
+  overflow: hidden;
   border-radius: var(--br-3);
   background: white;
 
@@ -301,6 +310,8 @@ button {
   left: 0;
   width: 100%;
   background: var(--c-red);
+  font-size: var(--f-small);
+  font-weight: var(--fw-medium);
   color: white;
 }
 
@@ -352,5 +363,9 @@ button {
 .slide-fade-leave-to {
   transform: translateY(-13px);
   opacity: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 </style>

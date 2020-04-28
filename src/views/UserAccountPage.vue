@@ -69,7 +69,7 @@
       <div v-else class="loading"></div>
     </div>
 
-    <NavButton :onClick="returnHome" class="home-button"
+    <NavButton v-if="user.firstName" :onClick="returnHome" class="home-button"
       >Back to form</NavButton
     >
   </div>
@@ -184,7 +184,7 @@ export default {
 .user-account-info {
   display: flex;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
   @media (min-width: $bp-medium) {
@@ -202,7 +202,7 @@ export default {
     height: 0;
 
     @media (min-width: $bp-medium) {
-      width: 220px;
+      min-width: 220px;
       height: 200px;
     }
   }
@@ -210,6 +210,7 @@ export default {
   & .user-information {
     position: relative;
     margin: 0 2rem;
+    overflow: hidden;
 
     @media (min-width: $bp-medium) {
       margin-left: 7.5rem;
@@ -224,6 +225,7 @@ export default {
     letter-spacing: var(--spacing-sm);
     line-height: 109px;
     text-align: center;
+    overflow-wrap: break-word;
 
     @media (min-width: $bp-medium) {
       margin-bottom: 0;
@@ -282,10 +284,8 @@ export default {
   margin-top: 3rem;
 
   @media (min-width: $bp-sm) {
-    position: absolute;
-    right: 12rem;
-    bottom: 12rem;
-    margin-top: 0;
+    margin-bottom: 3rem;
+    margin-left: 75%;
   }
 }
 </style>
