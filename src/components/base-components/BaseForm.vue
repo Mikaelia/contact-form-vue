@@ -11,16 +11,16 @@ export default {
   props: {
     onSubmit: {
       type: Function,
-      required: true,
+      required: true
     },
     vuelidate: {
-      type: Object,
-    },
+      type: Object
+    }
   },
 
   data: () => ({
     error: null,
-    formState: null,
+    formState: null
   }),
 
   methods: {
@@ -47,7 +47,7 @@ export default {
         }
       } else
         this.setError("Please complete the required fields before submitting");
-    },
-  },
+    }
+  }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="contact-form">
     <div class="form-header">
-      <div class="header-main">
+      <div class="header-title">
         <h1>Please share your contact info with us:</h1>
         <div class="header-image">
           <svg
@@ -45,72 +45,78 @@
           {{ error }}
         </p>
       </transition>
-      <div v-if="step === 1" class="form-step">
-        <BaseInput
-          v-model="form.email"
-          :vuelidate="$v.form.email"
-          label="Email"
-          id="email"
-          aria-required="true"
-        />
+      <fieldset>
+        <legend><span>Contact Information</span></legend>
+        <div v-if="step === 1" class="form-step">
+          <BaseInput
+            v-model="form.email"
+            type="email"
+            label="Email"
+            id="email"
+            :vuelidate="$v.form.email"
+            aria-required="true"
+          />
 
-        <NavButton
-          :disabled="$v.form.email.$invalid"
-          :onClick="next"
-          class="next-button"
-          >Next</NavButton
-        >
-      </div>
-      <div v-if="step === 2" class="form-step">
-        <div class="first-middle-wrapper">
-          <BaseInput
-            v-model="form.firstName"
-            :vuelidate="$v.form.firstName"
-            label="First Name"
-            id="firstname"
-            aria-required="true"
-          />
-          <BaseInput
-            type="text"
-            v-model="form.middleName"
-            label="Middle Name"
-            id="middlename"
-          />
-        </div>
-        <div class="last-age-wrapper">
-          <BaseInput
-            v-model="form.lastName"
-            :vuelidate="$v.form.lastName"
-            label="Last Name"
-            id="lastname"
-            aria-required="true"
-          />
-          <BaseInput
-            v-model.number="form.age"
-            type="number"
-            :vuelidate="$v.form.age"
-            label="Age"
-            id="age"
-            :customErrorMessages="{
-              minValue: '18 Minimum',
-              maxValue: 'Too high',
-              integer: 'Whole numbers',
-            }"
-            max="110"
-            aria-required="true"
-          />
-        </div>
-        <div class="button-wrapper">
-          <NavButton :onClick="prev" fullWidth>Previous</NavButton>
-          <LoadingButton
-            :state="formState"
-            fullWidth
-            data-test="contact-form-submit"
+          <NavButton
+            class="next-button"
+            :disabled="$v.form.email.$invalid"
+            :onClick="next"
+            >Next</NavButton
           >
-            Submit
-          </LoadingButton>
         </div>
-      </div>
+        <div v-if="step === 2" class="form-step">
+          <div class="first-middle-wrapper">
+            <BaseInput
+              v-model="form.firstName"
+              type="text"
+              label="First Name"
+              id="firstname"
+              :vuelidate="$v.form.firstName"
+              aria-required="true"
+            />
+            <BaseInput
+              v-model="form.middleName"
+              type="text"
+              label="Middle Name"
+              id="middlename"
+            />
+          </div>
+          <div class="last-age-wrapper">
+            <BaseInput
+              v-model="form.lastName"
+              type="text"
+              label="Last Name"
+              id="lastname"
+              :vuelidate="$v.form.lastName"
+              aria-required="true"
+            />
+            <BaseInput
+              v-model.number="form.age"
+              type="number"
+              label="Age"
+              id="age"
+              :vuelidate="$v.form.age"
+              :customErrorMessages="{
+                minValue: '18 Minimum',
+                maxValue: 'Too high',
+                integer: 'Whole numbers'
+              }"
+              max="110"
+              aria-required="true"
+            />
+          </div>
+          <div class="button-wrapper">
+            <NavButton :onClick="prev" fullWidth>Previous</NavButton>
+            <LoadingButton
+              :state="formState"
+              fullWidth
+              data-test="contact-form-submit"
+            >
+              Submit
+            </LoadingButton>
+          </div>
+        </div>
+      </fieldset>
     </BaseForm>
   </div>
 </template>
@@ -123,7 +129,7 @@ import {
   email,
   minValue,
   maxValue,
-  integer,
+  integer
 } from "vuelidate/lib/validators";
 
 import BaseInput from "./base-components/BaseInput.vue";
@@ -141,33 +147,33 @@ export default {
       firstName: "",
       middleName: "",
       lastName: "",
-      age: null,
-    },
+      age: null
+    }
   }),
 
   validations: {
     form: {
       email: {
         required,
-        email,
+        email
       },
       firstName: {
-        required,
+        required
       },
       lastName: {
-        required,
+        required
       },
       age: {
         required,
         integer,
         maxValue: maxValue(110),
-        minValue: minValue(18),
-      },
-    },
+        minValue: minValue(18)
+      }
+    }
   },
 
   methods: {
-    sanitizeForm(v) {
+    sanitizeInputs(v) {
       return Object.entries(v).reduce((final, [key, value]) => {
         if (value && typeof value === "string") {
           final[key] = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -194,14 +200,13 @@ export default {
         firstName: "",
         middleName: "",
         lastName: "",
-        age: 0,
+        age: 0
       };
     },
 
     async submitContact() {
       const userId = v4();
-      const data = this.sanitizeForm(this.form);
-
+      const data = this.sanitizeInputs(this.form);
       // eslint-disable-next-line
       let err, res;
 
@@ -217,8 +222,8 @@ export default {
 
       this.resetForm();
       this.$router.push(`/user/${userId}`);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -252,7 +257,7 @@ export default {
   }
 }
 
-.header-main {
+.header-title {
   display: flex;
   & h1 {
     color: var(--c-green-4);
@@ -268,6 +273,15 @@ form {
   * + .input-wrapper {
     margin-top: 4rem;
   }
+}
+
+fieldset {
+  border: none;
+}
+
+legend span {
+  position: absolute;
+  transform: translateX(-9999px);
 }
 
 .form-header {

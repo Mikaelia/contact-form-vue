@@ -1,11 +1,10 @@
 <template>
   <label v-if="label" class="field-label">
-    <div>
-      <span class="label-text" data-test="field-label-text">
-        {{ label }}
-      </span>
-      <span v-if="required" class="required-indicator">*</span>
-    </div>
+    <span class="label-text" data-test="field-label-text">
+      {{ label }}
+    </span>
+    <span v-if="required" class="required-indicator">*</span>
+
     <slot />
   </label>
 </template>
@@ -33,10 +32,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
-  display: flex;
-  align-items: center;
-  line-height: var(--lh-med);
+label {
+  display: block;
+  text-align: left;
 }
 
 .label-text {
@@ -48,7 +46,6 @@ div {
 }
 
 .required-indicator {
-  margin-left: 0.2rem;
   color: var(--c-red);
   font-size: var(--f-xsmall);
   font-weight: var(--fw-mid);

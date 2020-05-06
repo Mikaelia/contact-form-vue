@@ -53,10 +53,6 @@ export default {
       },
       set(value) {
         this.vuelidate && this.vuelidate.$touch();
-        // const sanitized =
-        //   this.type === "number"
-        //     ? value
-        //     : value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         this.$emit("input", value);
       },
     },
