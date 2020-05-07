@@ -12,12 +12,15 @@ npm install
 npm run serve
 ```
 
+**NOTE** you will need to set up your own firebase account in order to provide tokens to run this application
+
 ### Compiles and minifies for production
 
 
 ```
 npm run build
 ```
+
 
 ## Technical Decisions
 
