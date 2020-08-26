@@ -1,5 +1,7 @@
 # zenform
 
+A contact form built with Vue.js available for viewing here: https://silly-knuth-cd62dd.netlify.app
+
 ## Project setup
 
 ```
