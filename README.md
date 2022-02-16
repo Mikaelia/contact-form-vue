@@ -32,7 +32,7 @@ One of the nice features working with Vue is the ability to combine a component'
 
 ### Validation
 
-Instead of writing my own validators for each input field, I integrated Vuelidate. I chose Vuelidate with the rationale that the prebuilt validators are well tested, less error prone, and coupld be implemented much more quickly. In addition, Vuelidate's quite extensible: custom validators can be easily added to complement Vuelidate's premade offerings.
+Instead of writing my own validators for each input field, I integrated Vuelidate. I chose Vuelidate with the rationale that the prebuilt validators are well tested, less error prone, and could be implemented much more quickly. In addition, Vuelidate is quite extensible: custom validators can be easily added to complement Vuelidate's premade offerings.
 
 ### Data Storage
 
